@@ -1,0 +1,2 @@
+class RoutesAlerts::Config
+end
