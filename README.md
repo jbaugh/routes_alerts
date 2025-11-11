@@ -1,7 +1,9 @@
 # Routes Alerts
 Create metrics/alarms based on routing info.
 
-```
+[RubyGem page](https://rubygems.org/gems/routes_alerts)
+
+```ruby
 # Example usage:
 RoutesAlerts.configure do |config|
   # Setup log group name / namespace (you can specify on a route itself)

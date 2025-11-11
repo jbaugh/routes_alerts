@@ -6,6 +6,6 @@ Gem::Specification.new do |s|
   s.authors     = [""]
   s.email       = "jarrett.baugh@gmail.com"
   s.files       = Dir.glob(['lib/**/*.rb'])
-  s.homepage    = "https://rubygems.org/gems/routes_alerts"
+  s.homepage    = "https://github.com/jbaugh/routes_alerts"
   s.license     = "MIT"
 end
