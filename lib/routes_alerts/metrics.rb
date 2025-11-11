@@ -1,0 +1,3 @@
+class RoutesAlerts::Metrics
+
+end
