@@ -1,10 +1,14 @@
-require "config"
+require_relative "./configuration.rb"
 
 class RoutesAlerts
-  def self.config
-    self.configuration ||= Config.new
-    yield(configuration)
+  class << self
+    attr_accessor :configuration
   end
 
+  def self.configure
+    self.configuration ||= RoutesAlerts::Configuration.new
+    yield(configuration)
+  end
 end
+
 
