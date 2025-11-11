@@ -1,7 +1,7 @@
-require_relative "./routes_alerts/configuration.rb"
-
-
 module RoutesAlerts
+  require_relative "./routes_alerts/configuration.rb"
+  require_relative "./routes_alerts/metrics.rb"
+
   class << self
     attr_accessor :configuration
   end

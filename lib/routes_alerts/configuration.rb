@@ -1,3 +1,7 @@
+require 'aws-sdk-cloudwatchlogs'
+require_relative "./metrics.rb"
+require_relative "./route_info.rb"
+
 module RoutesAlerts
   class Configuration
     DEFAULT_ALARM_PERIOD = 300
@@ -25,7 +29,7 @@ module RoutesAlerts
       @default_max_duration = DEFAULT_MAX_DURATION
       @default_min_count = DEFAULT_MIN_COUNT
       @default_success_rate = DEFAULT_SUCCESS_RATE
-      @default_metrics = RouteAlerts::Metrics::DEFAULT_METRICS
+      @default_metrics = RoutesAlerts::Metrics::DEFAULT_METRICS
       @routes = []
       @default_actions = []
     end

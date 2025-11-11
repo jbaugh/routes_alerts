@@ -1,2 +1,4 @@
-class RoutesAlerts::Metrics::Duration < RoutesAlerts::Metrics::Base
+require_relative "./base.rb"
+
+class RoutesAlerts::Duration < RoutesAlerts::Base
 end

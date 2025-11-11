@@ -1,4 +1,6 @@
-class RoutesAlerts::Metrics::Count < RoutesAlerts::Metrics::Base
+require_relative "./base.rb"
+
+class RoutesAlerts::Count < RoutesAlerts::Base
   def filter_pattern
     "{ $.path = \"#{route_info.path}\" && $.method = \"#{route_info.method}\" }"
   end

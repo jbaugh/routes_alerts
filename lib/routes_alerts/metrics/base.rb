@@ -1,4 +1,4 @@
-class RoutesAlerts::Metrics::Base
+class RoutesAlerts::Base
   attr_reader :route_info, :config
 
   def initialize(config, route_info)
