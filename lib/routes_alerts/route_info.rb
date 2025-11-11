@@ -1,5 +1,5 @@
 class RouteAlerts::RouteInfo
-  def initialize(path:, method:, max_duration:, min_count:, success_rate:, alarm_period:, number_of_datapoints:, metrics:, namespace:, log_group_name:)
+  def initialize(path:, method:, max_duration:, min_count:, success_rate:, alarm_period:, number_of_datapoints:, metrics:, namespace:, log_group_name:, actions:)
     @path = path.to_s
     @method = method.to_s.upcase
     @max_duration = max_duration.to_f
@@ -10,5 +10,6 @@ class RouteAlerts::RouteInfo
     @metrics = metrics
     @namespace = namespace.to_s
     @log_group_name = log_group_name.to_s
+    @actions = actions || []
   end
 end

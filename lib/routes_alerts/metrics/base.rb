@@ -30,4 +30,8 @@ class RoutesAlerts::Metrics::Base
   def route_name
     "#{route_info.method}-#{route_info.path.gsub("/", "_").gsub("{", "").gsub("}", "")}"
   end
+
+  def actions
+    route_info.actions.any? ? route_info.actions : nil
+  end
 end

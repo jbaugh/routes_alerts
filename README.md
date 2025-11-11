@@ -8,6 +8,9 @@ RoutesAlerts.configure do |config|
   config.default_log_group_name = "something"
   config.default_namespce = "something-else"
 
+  # Add actions if you want
+  config.actions << "SomeSnsTopicARN"
+
   # Add a route with custom parameters
   config.add_route(path: "/api/v1/users", method: "GET", max_duration: 100, min_count: 1, success_rate: 99.0, alarm_period: 300, number_of_datapoints: 2, metrics: RoutesAlerts::Metrics::DEFAULT_METRICS)
 
