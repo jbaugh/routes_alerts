@@ -12,7 +12,7 @@ class RoutesAlerts::Duration < RoutesAlerts::Base
       filter_pattern: filter_pattern,
       metric_transformations: [
         {
-          metric_name: "Duration-#{route_name}",
+          metric_name: "#{RoutesAlerts::Metrics::DURATION_METRIC_NAME}-#{route_name}",
           metric_namespace: namespace,
           metric_value: "$.duration",
           default_value: 0,

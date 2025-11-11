@@ -12,7 +12,7 @@ class RoutesAlerts::SuccessRate < RoutesAlerts::Base
       filter_pattern: filter_pattern,
       metric_transformations: [
         {
-          metric_name: "SuccessRate-#{route_name}",
+          metric_name: "#{RoutesAlerts::Metrics::SUCCESS_METRIC_NAME}-#{route_name}",
           metric_namespace: namespace,
           metric_value: "1",
           default_value: 0,
