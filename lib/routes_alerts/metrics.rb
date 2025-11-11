@@ -1,3 +1,4 @@
+require_relative "./metrics/base.rb"
 require_relative "./metrics/count.rb"
 require_relative "./metrics/duration.rb"
 require_relative "./metrics/success_rate.rb"
@@ -23,11 +24,11 @@ class RoutesAlerts::Metrics
     route_info.metrics.each do |metric|
       case metric
       when COUNT_METRIC_NAME
-        RoutesAlerts::Metrics::Count.new(config, route_info).create!
+        RoutesAlerts::Count.new(config, route_info).create!
       when DURATION_METRIC_NAME
-        RoutesAlerts::Metrics::Duration.new(config, route_info).create!
+        RoutesAlerts::Duration.new(config, route_info).create!
       when SUCCESS_METRIC_NAME
-        RoutesAlerts::Metrics::SuccessRate.new(config, route_info).create!
+        RoutesAlerts::SuccessRate.new(config, route_info).create!
       else
         raise "Unknown metric type: #{metric}"
       end

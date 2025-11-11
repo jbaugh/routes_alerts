@@ -1,5 +1,9 @@
 
 class RoutesAlerts::RouteInfo
+  attr_reader :path, :method, :max_duration, :min_count, :success_rate, 
+              :alarm_period, :number_of_datapoints, :metrics, :namespace, 
+              :log_group_name, :actions
+
   def initialize(path:, method:, max_duration:, min_count:, success_rate:, alarm_period:, number_of_datapoints:, metrics:, namespace:, log_group_name:, actions:)
     @path = path.to_s
     @method = method.to_s.upcase

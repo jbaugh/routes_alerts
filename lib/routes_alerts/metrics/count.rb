@@ -25,7 +25,7 @@ class RoutesAlerts::Count < RoutesAlerts::Base
   def alarm_params
     {
       alarm_name: "Alarm-#{RoutesAlerts::Metrics::COUNT_METRIC_NAME}-#{route_name}",
-      actions_enabled: actions.any?,
+      actions_enabled: !!actions&.any?,
       ok_actions: actions,
       alarm_actions: actions,
       metric_name: "#{RoutesAlerts::Metrics::COUNT_METRIC_NAME}-#{route_name}",

@@ -31,3 +31,6 @@ end
 # Run the alert setup
 RoutesAlerts.create_metrics!
 ```
+
+## Testing
+`rake test`
