@@ -34,7 +34,7 @@ module RoutesAlerts
       @default_actions = []
     end
 
-    def add_route(path:, method:, max_duration:, min_count:, success_rate:, alarm_period:, number_of_datapoints:, metrics:, namespace:, log_group_name:, actions:)
+    def add_route(path:, method:, max_duration: nil, min_count: nil, success_rate: nil, alarm_period: nil, number_of_datapoints: nil, metrics: nil, namespace: nil, log_group_name: nil, actions: nil)
       route_info = RoutesAlerts::RouteInfo.new(
         path: path.to_s,
         method: method.to_s.upcase,
