@@ -70,12 +70,36 @@ class TestMetricsSuccessRate < Minitest::Test
       actions_enabled: true,
       ok_actions: ['arn:aws:sns:us-west-2:123456789012:test-topic'],
       alarm_actions: ['arn:aws:sns:us-west-2:123456789012:test-topic'],
-      metric_name: 'SuccessRate-GET-_api_users_id',
-      namespace: 'TestNamespace',
-      statistic: 'Average',
-      dimensions: [],
-      period: 600,
-      unit: 'Percent',
+      metrics: [
+        {
+          id: "m1",
+          metric_stat: {
+            metric: {
+              namespace: 'TestNamespace',
+              metric_name: 'SuccessRate-GET-_api_users_id',
+              dimensions: []
+            },
+            period: 600,
+            stat: "Sum"
+          }
+        },
+        {
+          id: "m2", 
+          metric_stat: {
+            metric: {
+              namespace: 'TestNamespace',
+              metric_name: 'Count-GET-_api_users_id',
+              dimensions: []
+            },
+            period: 600,
+            stat: "Sum"
+          }
+        },
+        {
+          id: "e1",
+          expression: "(m1/m2)*100"
+        }
+      ],
       evaluation_periods: 3,
       datapoints_to_alarm: 3,
       threshold: 95.5,
@@ -120,9 +144,13 @@ class TestMetricsSuccessRate < Minitest::Test
     assert_kind_of RoutesAlerts::Base, @success_rate_metric
   end
 
-  def test_uses_average_statistic
+  def test_uses_sum_statistic_for_ratio_calculation
     params = @success_rate_metric.alarm_params
-    assert_equal 'Average', params[:statistic]
+    success_metric = params[:metrics].find { |m| m[:id] == "m1" }
+    total_metric = params[:metrics].find { |m| m[:id] == "m2" }
+    
+    assert_equal 'Sum', success_metric[:metric_stat][:stat]
+    assert_equal 'Sum', total_metric[:metric_stat][:stat]
   end
 
   def test_uses_less_than_threshold_comparison
@@ -141,18 +169,35 @@ class TestMetricsSuccessRate < Minitest::Test
     assert_equal '1', transformation[:metric_value]
   end
 
-  def test_uses_count_unit
+  def test_uses_count_unit_for_metric
     metric_params = @success_rate_metric.metric_params
-    alarm_params = @success_rate_metric.alarm_params
-    
     transformation = metric_params[:metric_transformations].first
     assert_equal 'Count', transformation[:unit]
-    assert_equal 'Percent', alarm_params[:unit]
   end
 
   def test_filter_pattern_includes_success_status_codes
     pattern = @success_rate_metric.filter_pattern
     assert_includes pattern, '$.status >= 200'
     assert_includes pattern, '$.status < 300'
+  end
+
+  def test_alarm_uses_math_expression_for_success_rate_ratio
+    params = @success_rate_metric.alarm_params
+    
+    # Check that we have the expected metrics
+    success_metric = params[:metrics].find { |m| m[:id] == "m1" }
+    total_metric = params[:metrics].find { |m| m[:id] == "m2" }
+    expression_metric = params[:metrics].find { |m| m[:id] == "e1" }
+
+    assert success_metric != nil
+    assert total_metric != nil
+    assert expression_metric != nil
+    
+    # Verify the math expression calculates percentage
+    assert_equal "(m1/m2)*100", expression_metric[:expression]
+    
+    # Verify metric names
+    assert_equal 'SuccessRate-GET-_api_users_id', success_metric[:metric_stat][:metric][:metric_name]
+    assert_equal 'Count-GET-_api_users_id', total_metric[:metric_stat][:metric][:metric_name]
   end
 end

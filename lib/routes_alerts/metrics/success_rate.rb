@@ -28,12 +28,36 @@ class RoutesAlerts::SuccessRate < RoutesAlerts::Base
       actions_enabled: !!actions&.any?,
       ok_actions: actions,
       alarm_actions: actions,
-      metric_name: "#{RoutesAlerts::Metrics::SUCCESS_METRIC_NAME}-#{route_name}",
-      namespace: namespace,
-      statistic: "Average",
-      dimensions: [],
-      period: route_info.alarm_period,
-      unit: "Percent",
+      metrics: [
+        {
+          id: "m1",
+          metric_stat: {
+            metric: {
+              namespace: namespace,
+              metric_name: "#{RoutesAlerts::Metrics::SUCCESS_METRIC_NAME}-#{route_name}",
+              dimensions: []
+            },
+            period: route_info.alarm_period,
+            stat: "Sum"
+          }
+        },
+        {
+          id: "m2", 
+          metric_stat: {
+            metric: {
+              namespace: namespace,
+              metric_name: "#{RoutesAlerts::Metrics::COUNT_METRIC_NAME}-#{route_name}",
+              dimensions: []
+            },
+            period: route_info.alarm_period,
+            stat: "Sum"
+          }
+        },
+        {
+          id: "e1",
+          expression: "(m1/m2)*100"
+        }
+      ],
       evaluation_periods: route_info.number_of_datapoints,
       datapoints_to_alarm: route_info.number_of_datapoints,
       threshold: route_info.success_rate,
