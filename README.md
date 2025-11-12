@@ -8,7 +8,7 @@ Create metrics/alarms based on routing info.
 RoutesAlerts.configure do |config|
   # Setup log group name / namespace (you can specify on a route itself)
   config.default_log_group_name = "something"
-  config.default_namespce = "something-else"
+  config.default_namespace = "something-else"
 
   # Add actions if you want
   config.actions << "SomeSnsTopicARN"
