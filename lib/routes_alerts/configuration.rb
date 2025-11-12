@@ -20,7 +20,8 @@ module RoutesAlerts
                   :default_log_group_name,
                   :default_namespace,
                   :cloudwatch_logs,
-                  :default_actions
+                  :default_actions,
+                  :prefix
 
     def initialize
       @cloudwatch_logs = Aws::CloudWatchLogs::Client.new(region: "us-west-2")
@@ -32,6 +33,7 @@ module RoutesAlerts
       @default_metrics = RoutesAlerts::Metrics::DEFAULT_METRICS
       @routes = []
       @default_actions = []
+      @prefix = ""
     end
 
     def add_route(path:, method:, max_duration: nil, min_count: nil, success_rate: nil, alarm_period: nil, number_of_datapoints: nil, metrics: nil, namespace: nil, log_group_name: nil, actions: nil)
@@ -46,7 +48,8 @@ module RoutesAlerts
         log_group_name: (log_group_name || default_log_group_name),
         namespace: (namespace || default_namespace),
         actions: (actions || default_actions),
-        metrics: (metrics || default_metrics)
+        metrics: (metrics || default_metrics),
+        prefix: prefix
       )
       self.routes << route_info
     end

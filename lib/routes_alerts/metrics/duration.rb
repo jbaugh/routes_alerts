@@ -24,7 +24,7 @@ class RoutesAlerts::Duration < RoutesAlerts::Base
 
   def alarm_params
     {
-      alarm_name: "Alarm-#{RoutesAlerts::Metrics::DURATION_METRIC_NAME}-#{route_name}",
+      alarm_name: "#{prefix}Alarm-#{RoutesAlerts::Metrics::DURATION_METRIC_NAME}-#{route_name}",
       actions_enabled: !!actions&.any?,
       ok_actions: actions,
       alarm_actions: actions,

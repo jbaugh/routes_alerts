@@ -34,4 +34,12 @@ class RoutesAlerts::Base
   def actions
     route_info.actions.any? ? route_info.actions : nil
   end
+
+  def prefix
+    if route_info.prefix.empty?
+      ""
+    else
+      "#{route_info.prefix}-"
+    end
+  end
 end

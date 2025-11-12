@@ -91,7 +91,8 @@ class TestConfiguration < Minitest::Test
       log_group_name: 'test-log',
       namespace: 'TestSpace',
       actions: ['action1'],
-      metrics: ['Count', 'Duration']
+      metrics: ['Count', 'Duration'],
+      prefix: ""
     }
 
     route_info_mock = mock('route_info')
