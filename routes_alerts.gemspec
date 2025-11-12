@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.email       = "jarrett.baugh@gmail.com"
   s.files       = Dir.glob(['lib/**/*.rb'])
   s.homepage    = "https://github.com/jbaugh/routes_alerts"
-  spec.add_dependency "aws-sdk-cloudwatch", "~> 1.0"
+  s.add_dependency "aws-sdk-cloudwatch", "~> 1.0"
   s.required_ruby_version = '>= 2.6.0'
   s.license     = "MIT"
 end
