@@ -16,7 +16,7 @@ class RoutesAlerts::SuccessRate < RoutesAlerts::Base
           metric_namespace: namespace,
           metric_value: "1",
           default_value: 0,
-          unit: "Percent",
+          unit: "Count",
         },
       ]
     }

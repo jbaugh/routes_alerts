@@ -56,7 +56,7 @@ class TestMetricsSuccessRate < Minitest::Test
           metric_namespace: 'TestNamespace',
           metric_value: '1',
           default_value: 0,
-          unit: 'Percent',
+          unit: 'Count',
         },
       ]
     }
@@ -141,12 +141,12 @@ class TestMetricsSuccessRate < Minitest::Test
     assert_equal '1', transformation[:metric_value]
   end
 
-  def test_uses_percent_unit
+  def test_uses_count_unit
     metric_params = @success_rate_metric.metric_params
     alarm_params = @success_rate_metric.alarm_params
     
     transformation = metric_params[:metric_transformations].first
-    assert_equal 'Percent', transformation[:unit]
+    assert_equal 'Count', transformation[:unit]
     assert_equal 'Percent', alarm_params[:unit]
   end
 
