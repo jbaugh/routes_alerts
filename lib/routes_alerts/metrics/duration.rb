@@ -2,7 +2,7 @@ require_relative "./base.rb"
 
 class RoutesAlerts::Duration < RoutesAlerts::Base
   def filter_pattern
-    "{ $.path = \"#{route_info.path}\" && $.method = \"#{route_info.method}\" && EXISTS($.duration) }"
+    "{ $.path = \"#{route_info.path}\" && $.method = \"#{route_info.method}\" }"
   end
 
   def metric_params

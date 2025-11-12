@@ -21,7 +21,7 @@ class TestMetricsDuration < Minitest::Test
   end
 
   def test_filter_pattern
-    expected = "{ $.path = \"/api/users/{id}\" && $.method = \"GET\" && EXISTS($.duration) }"
+    expected = "{ $.path = \"/api/users/{id}\" && $.method = \"GET\" }"
     assert_equal expected, @duration_metric.filter_pattern
   end
 
@@ -41,7 +41,7 @@ class TestMetricsDuration < Minitest::Test
     )
     duration_metric = RoutesAlerts::Duration.new(@config, route_info)
     
-    expected = "{ $.path = \"/api/v2/posts/{post_id}\" && $.method = \"PUT\" && EXISTS($.duration) }"
+    expected = "{ $.path = \"/api/v2/posts/{post_id}\" && $.method = \"PUT\" }"
     assert_equal expected, duration_metric.filter_pattern
   end
 
@@ -49,7 +49,7 @@ class TestMetricsDuration < Minitest::Test
     expected = {
       log_group_name: 'test-log-group',
       filter_name: 'Duration-GET-_api_users_id',
-      filter_pattern: "{ $.path = \"/api/users/{id}\" && $.method = \"GET\" && EXISTS($.duration) }",
+      filter_pattern: "{ $.path = \"/api/users/{id}\" && $.method = \"GET\" }",
       metric_transformations: [
         {
           metric_name: 'Duration-GET-_api_users_id',
