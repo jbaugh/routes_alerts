@@ -111,7 +111,7 @@ class TestMetricsDuration < Minitest::Test
 
   def test_create_calls_cloudwatch_methods
     @config.cloudwatch_logs.expects(:put_metric_filter).with(@duration_metric.metric_params).once
-    @config.cloudwatch_logs.expects(:put_metric_alarm).with(@duration_metric.alarm_params).once
+    @config.cloudwatch.expects(:put_metric_alarm).with(@duration_metric.alarm_params).once
     
     @duration_metric.create!
   end

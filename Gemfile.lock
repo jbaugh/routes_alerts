@@ -3,6 +3,9 @@ GEM
   specs:
     aws-eventstream (1.4.0)
     aws-partitions (1.1181.0)
+    aws-sdk-cloudwatch (1.124.0)
+      aws-sdk-core (~> 3, >= 3.234.0)
+      aws-sigv4 (~> 1.5)
     aws-sdk-cloudwatchlogs (1.129.0)
       aws-sdk-core (~> 3, >= 3.234.0)
       aws-sigv4 (~> 1.5)
@@ -30,6 +33,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aws-sdk-cloudwatch (~> 1.32)
   aws-sdk-cloudwatchlogs (~> 1.32)
   minitest (~> 5.0)
   mocha (~> 2.0)

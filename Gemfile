@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 ruby '3.4.3'
 
 gem 'aws-sdk-cloudwatchlogs', '~> 1.32'
+gem 'aws-sdk-cloudwatch', '~> 1.32'
 
 group :test do
   gem 'minitest', '~> 5.0'

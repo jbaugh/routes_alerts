@@ -16,7 +16,7 @@ class RoutesAlerts::Base
 
   def create!
     config.cloudwatch_logs.put_metric_filter(metric_params)
-    config.cloudwatch_logs.put_metric_alarm(alarm_params)
+    config.cloudwatch.put_metric_alarm(alarm_params)
   end
 
   def log_group_name

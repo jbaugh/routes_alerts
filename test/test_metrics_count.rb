@@ -110,7 +110,7 @@ class TestMetricsCount < Minitest::Test
 
   def test_create_calls_cloudwatch_methods
     @config.cloudwatch_logs.expects(:put_metric_filter).with(@count_metric.metric_params).once
-    @config.cloudwatch_logs.expects(:put_metric_alarm).with(@count_metric.alarm_params).once
+    @config.cloudwatch.expects(:put_metric_alarm).with(@count_metric.alarm_params).once
     
     @count_metric.create!
   end

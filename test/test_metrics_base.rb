@@ -120,7 +120,7 @@ class TestMetricsBase < Minitest::Test
     @base.stubs(:alarm_params).returns(alarm_params)
     
     @config.cloudwatch_logs.expects(:put_metric_filter).with(metric_params).once
-    @config.cloudwatch_logs.expects(:put_metric_alarm).with(alarm_params).once
+    @config.cloudwatch.expects(:put_metric_alarm).with(alarm_params).once
     
     @base.create!
   end

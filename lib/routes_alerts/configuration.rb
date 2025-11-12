@@ -1,4 +1,5 @@
 require 'aws-sdk-cloudwatchlogs'
+require 'aws-sdk-cloudwatch'
 require_relative "./metrics.rb"
 require_relative "./route_info.rb"
 
@@ -20,11 +21,13 @@ module RoutesAlerts
                   :default_log_group_name,
                   :default_namespace,
                   :cloudwatch_logs,
+                  :cloudwatch,
                   :default_actions,
                   :prefix
 
     def initialize
       @cloudwatch_logs = Aws::CloudWatchLogs::Client.new(region: "us-west-2")
+      @cloudwatch = Aws::CloudWatch::Client.new(region: "us-west-2")
       @default_alarm_period = DEFAULT_ALARM_PERIOD
       @default_number_of_datapoints = DEFAULT_NUMBER_OF_DATAPOINTS
       @default_max_duration = DEFAULT_MAX_DURATION

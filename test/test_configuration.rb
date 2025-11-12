@@ -16,6 +16,7 @@ class TestConfiguration < Minitest::Test
     assert_equal [], @config.routes
     assert_equal [], @config.default_actions
     assert_instance_of Aws::CloudWatchLogs::Client, @config.cloudwatch_logs
+    assert_instance_of Aws::CloudWatch::Client, @config.cloudwatch
   end
 
   def test_default_constants

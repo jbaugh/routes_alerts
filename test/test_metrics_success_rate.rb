@@ -111,7 +111,7 @@ class TestMetricsSuccessRate < Minitest::Test
 
   def test_create_calls_cloudwatch_methods
     @config.cloudwatch_logs.expects(:put_metric_filter).with(@success_rate_metric.metric_params).once
-    @config.cloudwatch_logs.expects(:put_metric_alarm).with(@success_rate_metric.alarm_params).once
+    @config.cloudwatch.expects(:put_metric_alarm).with(@success_rate_metric.alarm_params).once
     
     @success_rate_metric.create!
   end
