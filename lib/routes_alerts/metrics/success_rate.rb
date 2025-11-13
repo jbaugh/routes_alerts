@@ -39,8 +39,8 @@ class RoutesAlerts::SuccessRate < RoutesAlerts::Base
             },
             period: route_info.alarm_period,
             stat: "Sum",
-            return_data: false
-          }
+          },
+          return_data: false
         },
         {
           id: "m2", 
@@ -52,8 +52,8 @@ class RoutesAlerts::SuccessRate < RoutesAlerts::Base
             },
             period: route_info.alarm_period,
             stat: "Sum",
-            return_data: false
-          }
+          },
+          return_data: false
         },
         {
           id: "e1",

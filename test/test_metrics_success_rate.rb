@@ -81,8 +81,8 @@ class TestMetricsSuccessRate < Minitest::Test
             },
             period: 600,
             stat: "Sum",
-            return_data: false
-          }
+          },
+          return_data: false
         },
         {
           id: "m2", 
@@ -94,8 +94,8 @@ class TestMetricsSuccessRate < Minitest::Test
             },
             period: 600,
             stat: "Sum",
-            return_data: false
-          }
+          },
+          return_data: false
         },
         {
           id: "e1",
