@@ -80,7 +80,8 @@ class TestMetricsSuccessRate < Minitest::Test
               dimensions: []
             },
             period: 600,
-            stat: "Sum"
+            stat: "Sum",
+            return_data: false
           }
         },
         {
@@ -89,15 +90,16 @@ class TestMetricsSuccessRate < Minitest::Test
             metric: {
               namespace: 'TestNamespace',
               metric_name: 'Count-GET-_api_users_id',
-              dimensions: []
+              dimensions: [],
             },
             period: 600,
-            stat: "Sum"
+            stat: "Sum",
+            return_data: false
           }
         },
         {
           id: "e1",
-          expression: "(m1/m2)*100"
+          expression: "(m1/m2)*100",
         }
       ],
       evaluation_periods: 3,

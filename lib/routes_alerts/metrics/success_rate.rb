@@ -35,10 +35,11 @@ class RoutesAlerts::SuccessRate < RoutesAlerts::Base
             metric: {
               namespace: namespace,
               metric_name: "#{RoutesAlerts::Metrics::SUCCESS_METRIC_NAME}-#{route_name}",
-              dimensions: []
+              dimensions: [],
             },
             period: route_info.alarm_period,
-            stat: "Sum"
+            stat: "Sum",
+            return_data: false
           }
         },
         {
@@ -47,15 +48,16 @@ class RoutesAlerts::SuccessRate < RoutesAlerts::Base
             metric: {
               namespace: namespace,
               metric_name: "#{RoutesAlerts::Metrics::COUNT_METRIC_NAME}-#{route_name}",
-              dimensions: []
+              dimensions: [],
             },
             period: route_info.alarm_period,
-            stat: "Sum"
+            stat: "Sum",
+            return_data: false
           }
         },
         {
           id: "e1",
-          expression: "(m1/m2)*100"
+          expression: "(m1/m2)*100",
         }
       ],
       evaluation_periods: route_info.number_of_datapoints,
