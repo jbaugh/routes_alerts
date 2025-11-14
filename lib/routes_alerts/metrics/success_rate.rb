@@ -64,7 +64,7 @@ class RoutesAlerts::SuccessRate < RoutesAlerts::Base
       datapoints_to_alarm: route_info.number_of_datapoints,
       threshold: route_info.success_rate,
       comparison_operator: "LessThanThreshold",
-      treat_missing_data: "breaching",
+      treat_missing_data: "notBreaching",
     }
   end
 end
